@@ -1,19 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import Button from "./ui/Button";
 import AnimatedText from "./ui/AnimatedText";
 
+const XIcon = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
+);
+
 const socialLinks = [
-  { icon: Twitter, href: "https://x.com/0x_pepperones", label: "Twitter" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/jashanthadani/", label: "LinkedIn" },
+  { icon: XIcon, href: "https://x.com/0x_pepperones", label: "X" },
   { icon: Github, href: "https://github.com/Jash96", label: "GitHub" },
 ];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
       <div className="max-w-5xl mx-auto text-center relative z-10">
         {/* Badge */}
 
@@ -42,7 +55,6 @@ export default function Hero() {
               "Web3 Research & Intel Analyst",
               "AI Automation Builder",
               "Algo Trading Developer",
-              "MQL5 Expert Advisor Creator",
             ]}
             className="text-xl md:text-2xl lg:text-3xl font-medium"
           />

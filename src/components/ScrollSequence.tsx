@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import Preloader from "./Preloader";
 
 const frameCount = 96;
-const frames: HTMLImageElement[] = [];
 
 export default function ScrollSequence({
     onLoadComplete,
@@ -14,6 +13,7 @@ export default function ScrollSequence({
 }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const framesRef = useRef<HTMLImageElement[]>([]);
     const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
@@ -32,13 +32,16 @@ export default function ScrollSequence({
     // Map scroll (0 to 1) to frame index (0 to frameCount - 1)
     const frameIndex = useTransform(smoothProgress, [0, 1], [1, frameCount - 1]);
 
+    // Opacity for scroll prompt — must be at top level (rules of hooks)
+    const scrollPromptOpacity = useTransform(smoothProgress, [0.9, 1], [1, 0]);
+
     useEffect(() => {
-        // Preload images
+        // Reset frames array on mount
+        framesRef.current = new Array(frameCount);
         let loadedCount = 0;
         let isMounted = true;
 
         const loadImages = async () => {
-            console.log("Starting image load...");
             const loadPromises = [];
 
             for (let i = 1; i <= frameCount; i++) {
@@ -51,12 +54,11 @@ export default function ScrollSequence({
                         if (isMounted) {
                             loadedCount++;
                             setProgress((loadedCount / frameCount) * 100);
-                            frames[i - 1] = img;
+                            framesRef.current[i - 1] = img;
                         }
                         resolve();
                     };
-                    img.onerror = (e) => {
-                        console.error(`Failed to load frame ${i}`, e);
+                    img.onerror = () => {
                         if (isMounted) {
                             loadedCount++;
                             setProgress((loadedCount / frameCount) * 100);
@@ -68,7 +70,6 @@ export default function ScrollSequence({
             }
 
             await Promise.all(loadPromises);
-            console.log("All images loaded or failed");
             if (isMounted) {
                 setLoading(false);
                 onLoadComplete?.();
@@ -79,8 +80,7 @@ export default function ScrollSequence({
 
         // Fallback if loading takes too long
         const timeout = setTimeout(() => {
-            if (isMounted && loading) {
-                console.warn("Loading timed out, forcing render");
+            if (isMounted) {
                 setLoading(false);
             }
         }, 10000);
@@ -98,6 +98,8 @@ export default function ScrollSequence({
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
+        const frames = framesRef.current;
+
         // Enable high quality image smoothing
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
@@ -110,8 +112,7 @@ export default function ScrollSequence({
         };
 
         const render = (index: number) => {
-            // Ensure index is within bounds [0, frameCount - 1]
-            let safeIndex = Math.max(0, Math.min(Math.round(index), frameCount - 1));
+            const safeIndex = Math.max(0, Math.min(Math.round(index), frameCount - 1));
             const frame = frames[safeIndex];
 
             if (!frame || !frame.width) {
@@ -160,17 +161,18 @@ export default function ScrollSequence({
 
     return (
         <>
-            {loading && <Preloader progress={progress} />}
-            <div ref={containerRef} className="h-[280vh] relative">
+            <AnimatePresence>
+                {loading && <Preloader progress={progress} />}
+            </AnimatePresence>
+            <div ref={containerRef} className="h-[150vh] relative">
                 <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
                     <canvas
                         ref={canvasRef}
                         className="w-full h-full object-cover"
                     />
-                    {/* Overlay text or scroll prompt can go here */}
                     <motion.div
                         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white z-10 pointer-events-none"
-                        style={{ opacity: useTransform(smoothProgress, [0.9, 1], [1, 0]) }}
+                        style={{ opacity: scrollPromptOpacity }}
                     >
                         <p className="text-sm uppercase tracking-widest text-white/50 animate-pulse">Scroll to explore</p>
                     </motion.div>

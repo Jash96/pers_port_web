@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { useRef } from "react";
 
 const projects = [
@@ -9,9 +10,9 @@ const projects = [
     title: "Web3 Intel Reports",
     description:
       "In-depth research reports covering protocol analysis, tokenomics breakdowns, and market intelligence across DeFi, L2s, and emerging blockchain ecosystems.",
-    image: "/project-1.jpg",
+    image: "/home_images/web3_website_photo1.jpeg",
     tags: ["Web3", "Research", "DeFi", "Analysis"],
-    liveUrl: "#",
+    liveUrl: "/projects",
     githubUrl: "#",
     color: "cyan",
   },
@@ -19,9 +20,9 @@ const projects = [
     title: "AI Automation Workflows",
     description:
       "Production-ready N8N workflows integrating Claude agents and MCPs for automated research, data processing, and intelligent task execution.",
-    image: "/project-2.jpg",
+    image: "/home_images/ai_automation_art.jpeg",
     tags: ["N8N", "Claude", "MCPs", "Automation"],
-    liveUrl: "#",
+    liveUrl: "/projects#project-02",
     githubUrl: "#",
     color: "purple",
   },
@@ -29,9 +30,9 @@ const projects = [
     title: "MetaTrader 5 Expert Advisors",
     description:
       "Custom MQL5 trading algorithms with advanced risk management, multi-timeframe analysis, and backtested strategies for forex and crypto markets.",
-    image: "/project-3.jpg",
+    image: "/home_images/algotrading_art.jpeg",
     tags: ["MQL5", "MT5", "Algo Trading", "EAs"],
-    liveUrl: "#",
+    liveUrl: "/projects#project-03",
     githubUrl: "#",
     color: "magenta",
   },
@@ -76,8 +77,8 @@ function ProjectCard({
     project.color === "cyan"
       ? "rgba(0, 212, 255, 0.4)"
       : project.color === "purple"
-      ? "rgba(168, 85, 247, 0.4)"
-      : "rgba(236, 72, 153, 0.4)";
+        ? "rgba(168, 85, 247, 0.4)"
+        : "rgba(236, 72, 153, 0.4)";
 
   return (
     <motion.div
@@ -103,23 +104,13 @@ function ProjectCard({
       >
         {/* Image Placeholder */}
         <div className="relative h-56 overflow-hidden">
-          <div
-            className={`absolute inset-0 bg-gradient-to-br ${
-              project.color === "cyan"
-                ? "from-cyan/20 to-abyss"
-                : project.color === "purple"
-                ? "from-purple/20 to-abyss"
-                : "from-magenta/20 to-abyss"
-            }`}
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span
-              className="text-6xl font-bold text-white/10"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              0{index + 1}
-            </span>
-          </div>
+          <div className="absolute inset-0 bg-void/20" />
           {/* Hover Overlay */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-void via-void/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-6"
@@ -133,14 +124,7 @@ function ProjectCard({
               >
                 <ExternalLink size={20} />
               </motion.a>
-              <motion.a
-                href={project.githubUrl}
-                className="p-3 glass rounded-xl text-text hover:bg-white/10 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github size={20} />
-              </motion.a>
+
             </div>
           </motion.div>
         </div>
@@ -166,13 +150,12 @@ function ProjectCard({
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className={`px-3 py-1 text-xs font-mono rounded-full border ${
-                  project.color === "cyan"
-                    ? "border-cyan/30 text-cyan bg-cyan/5"
-                    : project.color === "purple"
+                className={`px-3 py-1 text-xs font-mono rounded-full border ${project.color === "cyan"
+                  ? "border-cyan/30 text-cyan bg-cyan/5"
+                  : project.color === "purple"
                     ? "border-purple/30 text-purple bg-purple/5"
                     : "border-magenta/30 text-magenta bg-magenta/5"
-                }`}
+                  }`}
               >
                 {tag}
               </span>
@@ -239,7 +222,7 @@ export default function Projects() {
           transition={{ delay: 0.5 }}
         >
           <motion.a
-            href="#"
+            href="/projects"
             className="inline-flex items-center gap-2 text-text-muted hover:text-cyan transition-colors group"
             whileHover={{ x: 5 }}
           >

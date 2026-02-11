@@ -24,11 +24,11 @@ const skillPillars = [
     color: "cyan",
     gradient: "from-cyan to-cyan/50",
     skills: [
-      { name: "Protocol Analysis", icon: Search },
-      { name: "Tokenomics Research", icon: FileText },
+      { name: "Protocol and Tokenomics Research", icon: Search },
+      { name: "Writing and Data Analysis", icon: FileText },
       { name: "Market Intelligence", icon: TrendingUp },
     ],
-    description: "4+ years analyzing blockchain protocols, DeFi ecosystems, and delivering actionable Web3 intelligence.",
+    description: "Delivering high-level protocol coverage and data-driven market insights.",
   },
   {
     title: "AI Automation",
@@ -37,10 +37,10 @@ const skillPillars = [
     gradient: "from-purple to-purple/50",
     skills: [
       { name: "N8N Workflows", icon: Workflow },
-      { name: "Claude Agents & MCPs", icon: Cpu },
-      { name: "API Integrations", icon: Plug },
+      { name: "RAG and MCPs", icon: Cpu },
+      { name: "Multi-application integrations", icon: Plug },
     ],
-    description: "Building intelligent automation systems with N8N, Claude agents, and Model Context Protocols.",
+    description: "Architecting advanced automation ecosystems using N8N, RAG pipelines, and seamless multi-app integrations.",
   },
   {
     title: "Algo Trading",
@@ -49,10 +49,10 @@ const skillPillars = [
     gradient: "from-magenta to-magenta/50",
     skills: [
       { name: "MQL5 Development", icon: Code2 },
-      { name: "Expert Advisors", icon: Zap },
+      { name: "Project Management", icon: Zap },
       { name: "Strategy Backtesting", icon: BarChart3 },
     ],
-    description: "Developing automated trading algorithms and Expert Advisors for MetaTrader 5 platforms.",
+    description: "Overseeing algorithmic trading projects and developing automated strategies for MetaTrader 5.",
   },
 ];
 
@@ -137,8 +137,8 @@ export default function Skills() {
                           pillar.color === "cyan"
                             ? "text-cyan"
                             : pillar.color === "purple"
-                            ? "text-purple"
-                            : "text-magenta"
+                              ? "text-purple"
+                              : "text-magenta"
                         }
                       />
                       <span className="text-text text-sm">{skill.name}</span>

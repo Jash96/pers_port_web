@@ -7,7 +7,7 @@ interface GlassCardProps {
   children: ReactNode;
   className?: string;
   hover?: boolean;
-  glow?: "cyan" | "purple" | "none";
+  glow?: "cyan" | "purple" | "magenta" | "none";
   delay?: number;
 }
 
@@ -18,7 +18,7 @@ export default function GlassCard({
   glow = "none",
   delay = 0,
 }: GlassCardProps) {
-  const glowClass = glow === "cyan" ? "glow-cyan" : glow === "purple" ? "glow-purple" : "";
+  const glowClass = glow === "cyan" ? "glow-cyan" : glow === "purple" ? "glow-purple" : glow === "magenta" ? "glow-magenta" : "";
 
   return (
     <motion.div
@@ -30,14 +30,16 @@ export default function GlassCard({
       whileHover={
         hover
           ? {
-              scale: 1.02,
-              boxShadow:
-                glow === "cyan"
-                  ? "0 0 60px rgba(0, 212, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3)"
-                  : glow === "purple"
+            scale: 1.02,
+            boxShadow:
+              glow === "cyan"
+                ? "0 0 60px rgba(0, 212, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3)"
+                : glow === "purple"
                   ? "0 0 60px rgba(168, 85, 247, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3)"
-                  : "0 20px 40px rgba(0, 0, 0, 0.3)",
-            }
+                  : glow === "magenta"
+                    ? "0 0 60px rgba(236, 72, 153, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3)"
+                    : "0 20px 40px rgba(0, 0, 0, 0.3)",
+          }
           : {}
       }
       transition-property="transform, box-shadow"

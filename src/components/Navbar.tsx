@@ -3,33 +3,54 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
-  { name: "Home", href: "#" },
+  { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Projects", href: "/projects" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setHasScrolled(latest > 50);
   });
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsOpen(false);
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      setIsOpen(false);
 
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (pathname === "/") {
+        // We are on the homepage, scroll smooth
+        if (href === "#") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      } else {
+        // We are NOT on the homepage, redirect to home with hash
+        if (href === "#") {
+          router.push("/");
+        } else {
+          router.push(`/${href}`);
+        }
+      }
     } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+      // For non-anchor links (like /projects), if we want client-side transition without full reload:
+      if (href.startsWith("/")) {
+        e.preventDefault();
+        router.push(href);
       }
     }
   };
@@ -91,7 +112,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Let&apos;s Talk
+            Contact
           </motion.a>
         </div>
 
@@ -134,7 +155,7 @@ export default function Navbar() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="md:hidden fixed inset-0 bg-void/60 backdrop-blur-sm z-40"
+              className="md:hidden fixed inset-0 bg-void/80 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -143,19 +164,19 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <motion.div
-              className="md:hidden absolute top-full left-4 right-4 mt-2 glass rounded-2xl border border-white/10 overflow-hidden z-50"
+              className="md:hidden absolute top-full left-0 right-0 mt-2 bg-void/95 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden z-50 shadow-2xl mx-2"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
-              <div className="p-4 flex flex-col">
+              <div className="p-4 flex flex-col space-y-2">
                 {navLinks.map((link, index) => (
                   <motion.a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="px-4 py-3 text-text-muted hover:text-cyan hover:bg-white/5 rounded-xl transition-all duration-200 font-medium"
+                    className="px-4 py-4 text-center text-lg text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 font-medium tracking-wide"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
@@ -168,12 +189,12 @@ export default function Navbar() {
                 <motion.a
                   href="#contact"
                   onClick={(e) => handleNavClick(e, "#contact")}
-                  className="mt-4 px-4 py-3 text-center font-semibold rounded-xl bg-gradient-to-r from-cyan to-purple text-void"
+                  className="mt-4 px-4 py-4 text-center text-lg font-bold rounded-xl bg-gradient-to-r from-cyan to-purple text-void shadow-lg shadow-purple/20"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.05 }}
                 >
-                  Let&apos;s Talk
+                  Contact
                 </motion.a>
               </div>
             </motion.div>

@@ -10,13 +10,21 @@
   --color-purple: #a855f7;
   --color-purple-glow: #a855f740;
   --color-magenta: #ec4899;
+  --color-magenta-glow: #ec489940;
   --color-text: #f0f0f0;
+
+  /* ... existing code ... */
+
+
   --color-text-muted: #a0a0b0;
   --color-glass: rgba(255, 255, 255, 0.05);
   --color-glass-border: rgba(255, 255, 255, 0.1);
-  --font-display: "Syne", sans-serif;
-  --font-body: var(--font-roboto), sans-serif;
-  --font-mono: var(--font-roboto), monospace;
+  --font-display: "Syne",
+    sans-serif;
+  --font-body: var(--font-roboto),
+    sans-serif;
+  --font-mono: var(--font-roboto),
+    monospace;
 }
 
 @font-face {
@@ -83,6 +91,10 @@ body {
   box-shadow: 0 0 40px var(--color-purple-glow), 0 0 80px rgba(168, 85, 247, 0.1);
 }
 
+.glow-magenta {
+  box-shadow: 0 0 40px var(--color-magenta-glow), 0 0 80px rgba(236, 72, 153, 0.1);
+}
+
 .text-gradient {
   background: linear-gradient(135deg, var(--color-cyan), var(--color-purple), var(--color-magenta));
   -webkit-background-clip: text;
@@ -109,20 +121,47 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; filter: blur(60px); }
-  50% { opacity: 0.8; filter: blur(80px); }
+
+  0%,
+  100% {
+    opacity: 0.5;
+    filter: blur(60px);
+  }
+
+  50% {
+    opacity: 0.8;
+    filter: blur(80px);
+  }
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animate-float {

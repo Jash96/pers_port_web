@@ -6,7 +6,9 @@ export const metadata: Metadata = {
   description: "Portfolio of Jashan - Blockchain specialist, AI automation architect, and technical writer crafting the future of Web3 and intelligent systems.",
   keywords: ["crypto", "blockchain", "AI automation", "N8N", "Web3", "technical writer"],
   icons: {
-    icon: "/favicon/icons8-globe-64.png",
+    icon: [
+      { url: "/icons8-globe-64.png", type: "image/png", sizes: "64x64" },
+    ],
   },
 };
 
