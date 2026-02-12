@@ -57,9 +57,11 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-2xl border w-[95%] max-w-7xl ${hasScrolled
-        ? "bg-void/80 backdrop-blur-xl shadow-lg border-white/10 py-2"
-        : "bg-void/30 backdrop-blur-md shadow-md border-white/5 py-3"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-2xl border w-[95%] max-w-7xl ${isOpen
+        ? "bg-void/95 backdrop-blur-xl shadow-lg border-white/10 py-2"
+        : hasScrolled
+          ? "bg-void/80 backdrop-blur-xl shadow-lg border-white/10 py-2"
+          : "bg-void/30 backdrop-blur-md shadow-md border-white/5 py-3"
         }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -118,7 +120,10 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="md:hidden relative z-10 p-2 text-text rounded-lg hover:bg-white/10 transition-colors"
+          className={`md:hidden relative z-10 p-2 rounded-lg transition-colors ${isOpen
+            ? "text-white bg-white/15 ring-1 ring-white/20"
+            : "text-text hover:bg-white/10"
+          }`}
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.9 }}
           aria-label={isOpen ? "Close menu" : "Open menu"}
