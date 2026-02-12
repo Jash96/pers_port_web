@@ -57,11 +57,11 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 rounded-2xl border w-[95%] max-w-7xl ${isOpen
-        ? "bg-void/95 backdrop-blur-xl shadow-lg border-white/10 py-2"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 border w-[95%] max-w-7xl ${isOpen
+        ? "rounded-3xl bg-void/95 backdrop-blur-xl shadow-lg border-white/10 py-2"
         : hasScrolled
-          ? "bg-void/80 backdrop-blur-xl shadow-lg border-white/10 py-2"
-          : "bg-void/30 backdrop-blur-md shadow-md border-white/5 py-3"
+          ? "rounded-2xl bg-void/80 backdrop-blur-xl shadow-lg border-white/10 py-2"
+          : "rounded-2xl bg-void/30 backdrop-blur-md shadow-md border-white/5 py-3"
         }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
