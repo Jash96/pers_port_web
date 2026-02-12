@@ -67,7 +67,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="w-full px-6 flex items-center justify-between">
+      <div className="w-full px-6 flex items-center justify-between relative z-60">
         {/* Logo */}
         <motion.a
           href="#"
