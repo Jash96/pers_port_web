@@ -27,7 +27,14 @@ export function AboutTeaser() {
       />
       <div className="about-teaser__body reveal-stagger" ref={ref}>
         <div className="about-teaser__portrait">
-          <PortraitSlot ratio="4-5" placeholder="Drop a portrait — 4:5 works best" corner="image" />
+          <PortraitSlot
+            src="/personal-photos/jashan.jpg"
+            alt="Jashan in Douro Valley"
+            ratio="4-5"
+            objectPosition="42% 58%"
+            placeholder="Drop a portrait — 4:5 works best"
+            corner="image"
+          />
           <div
             className="meta dim-2"
             style={{ marginTop: 14, display: "flex", justifyContent: "space-between" }}

@@ -42,9 +42,6 @@ export function ContactTeaser() {
             Or book a call ↗
           </a>
         </div>
-        <div className="contact-teaser__remotion meta dim-2">
-          [ This section reserved for a Remotion scroll piece ]
-        </div>
       </div>
     </section>
   );

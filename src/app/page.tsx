@@ -7,6 +7,7 @@ import { HeroArt } from "@/components/site/HeroArt";
 import { AboutTeaser } from "@/components/site/AboutTeaser";
 import { SelectedWorkTeaser } from "@/components/site/SelectedWorkTeaser";
 import { ContactTeaser } from "@/components/site/ContactTeaser";
+import { HomeScrollAtmosphere } from "@/components/site/HomeScrollAtmosphere";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Grain />
       <Cursor />
       <Nav />
+      <HomeScrollAtmosphere />
       <main className="page">
         <HeroArt />
         <Marquee

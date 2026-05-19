@@ -19,8 +19,11 @@ export function Nav() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    const current = document.documentElement.getAttribute("data-theme");
-    if (current === "light" || current === "dark") setTheme(current);
+    const frame = window.requestAnimationFrame(() => {
+      const current = document.documentElement.getAttribute("data-theme");
+      if (current === "light" || current === "dark") setTheme(current);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const toggleTheme = () => {
