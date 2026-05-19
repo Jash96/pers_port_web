@@ -1,28 +1,29 @@
-import BackgroundOrbs from "@/components/BackgroundOrbs";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-
-import ScrollSequence from "@/components/ScrollSequence";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
+import { Cursor } from "@/components/site/Cursor";
+import { Grain } from "@/components/site/Grain";
+import { Marquee } from "@/components/site/Marquee";
+import { HeroArt } from "@/components/site/HeroArt";
+import { AboutTeaser } from "@/components/site/AboutTeaser";
+import { SelectedWorkTeaser } from "@/components/site/SelectedWorkTeaser";
+import { ContactTeaser } from "@/components/site/ContactTeaser";
 
 export default function Home() {
   return (
-    <main className="relative bg-[#030014]">
-      <BackgroundOrbs />
-      <ScrollSequence />
-      <div className="relative z-10">
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-        <Footer />
-      </div>
-    </main>
+    <>
+      <Grain />
+      <Cursor />
+      <Nav />
+      <main className="page">
+        <HeroArt />
+        <Marquee
+          words={["Research", "Automation", "Systems", "Web3", "Algo Trading", "Writing", "AI Agents"]}
+        />
+        <AboutTeaser />
+        <SelectedWorkTeaser />
+        <ContactTeaser />
+      </main>
+      <Footer />
+    </>
   );
 }
