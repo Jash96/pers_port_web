@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL } from "./SocialSignals";
 
 export function Footer() {
   return (
@@ -24,10 +25,12 @@ export function Footer() {
         <div className="footer-col">
           <h4>Elsewhere</h4>
           <ul>
-            <li><a href="https://github.com/" target="_blank" rel="noreferrer">Github ↗</a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a></li>
-            <li><a href="https://x.com/" target="_blank" rel="noreferrer">X / Twitter ↗</a></li>
-            <li><a href="mailto:hi@j45h.xyz">Email ↗</a></li>
+            <li><a href="https://github.com/Jash96" target="_blank" rel="noreferrer">Github ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/jashanthadani/" target="_blank" rel="noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://x.com/0x_pepperones" target="_blank" rel="noreferrer">X / Pepperones ↗</a></li>
+            <li><a href="https://x.com/AphelionWire" target="_blank" rel="noreferrer">X / Aphelion ↗</a></li>
+            <li><a href="https://pepperones.substack.com/" target="_blank" rel="noreferrer">Substack ↗</a></li>
+            <li><a href={`mailto:${CONTACT_EMAIL}`}>Email ↗</a></li>
           </ul>
         </div>
       </div>

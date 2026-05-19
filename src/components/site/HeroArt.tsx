@@ -11,53 +11,69 @@ export function HeroArt() {
   const reducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const progress = useSpring(scrollY, smooth);
-  const titleY = useTransform(progress, [0, 900], [0, -92]);
-  const titleScale = useTransform(progress, [0, 900], [1, 0.94]);
-  const subtitleY = useTransform(progress, [0, 900], [0, -48]);
-  const cornerTopY = useTransform(progress, [0, 900], [0, -28]);
-  const cornerBottomY = useTransform(progress, [0, 900], [0, 42]);
+  const titleY = useTransform(progress, [0, 900], [0, -86]);
+  const titleScale = useTransform(progress, [0, 900], [1, 0.96]);
+  const textureY = useTransform(progress, [0, 900], [0, 58]);
+  const textureX = useTransform(progress, [0, 900], [0, -32]);
+  const pathRotate = useTransform(progress, [0, 900], [0, -4]);
+  const noteY = useTransform(progress, [0, 900], [0, 34]);
   const fade = useTransform(progress, [0, 650, 900], [1, 0.9, 0.36]);
 
   return (
     <section className="hero hero-art reveal-stagger in" id="top">
+      <motion.div
+        className="hero-art__texture"
+        aria-hidden="true"
+        style={reducedMotion ? undefined : { x: textureX, y: textureY, opacity: fade }}
+      >
+        <span className="hero-art__wash hero-art__wash--one" />
+        <span className="hero-art__wash hero-art__wash--two" />
+        <span className="hero-art__wash hero-art__wash--three" />
+        <span className="hero-art__contour hero-art__contour--one" />
+        <span className="hero-art__contour hero-art__contour--two" />
+        <span className="hero-art__mist hero-art__mist--one" />
+        <span className="hero-art__mist hero-art__mist--two" />
+      </motion.div>
+
+      <motion.svg
+        className="hero-art__signal"
+        viewBox="0 0 1200 720"
+        aria-hidden="true"
+        style={reducedMotion ? undefined : { rotate: pathRotate, opacity: fade }}
+      >
+        <path d="M78 548 C 252 338, 338 620, 520 382 S 814 134, 1118 232" />
+        <path d="M184 630 C 344 458, 432 526, 606 350 S 842 238, 1018 122" />
+        <path d="M34 398 C 210 288, 354 420, 488 246 S 780 58, 1164 116" />
+      </motion.svg>
+
       <div className="hero-art__inner">
         <motion.div
-          className="hero-art__corner-tl"
-          style={reducedMotion ? undefined : { y: cornerTopY, opacity: fade }}
-        >
-          <div className="eyebrow">[ Index / 01 ]</div>
-          <div className="meta" style={{ marginTop: 6 }}>Jashan — folio &rsquo;26</div>
-        </motion.div>
-        <motion.div
-          className="hero-art__corner-tr"
-          style={reducedMotion ? undefined : { y: cornerTopY, opacity: fade }}
-        >
-          <div className="eyebrow txt-right">Singapore</div>
-          <div className="meta txt-right" style={{ marginTop: 6 }}>1.35° N · 103.82° E</div>
-        </motion.div>
-
-        <motion.h1
-          className="hero-art__name display"
+          className="hero-art__copy"
           style={reducedMotion ? undefined : { y: titleY, scale: titleScale, opacity: fade }}
         >
-          Jashan<span className="accent-dot">.</span>
-        </motion.h1>
-
-        <motion.div
-          className="hero-art__subtitle"
-          style={reducedMotion ? undefined : { x: "-50%", y: subtitleY, opacity: fade }}
-        >
-          <span className="rule-h" />
-          <span className="meta">
-            <i />
-            analyst · automator · researcher
-          </span>
-          <span className="rule-h" />
+          <p className="hero-art__kicker meta">Singapore / folio &rsquo;26</p>
+          <h1 className="hero-art__name display">
+            Jashan<span className="accent-dot">.</span>
+          </h1>
+          <p className="hero-art__statement">
+            Crypto intelligence, automation, and trading systems. Quiet tools for markets that move
+            fast.
+          </p>
         </motion.div>
 
         <motion.div
-          className="hero-art__corner-bl meta"
-          style={reducedMotion ? undefined : { y: cornerBottomY, opacity: fade }}
+          className="hero-art__drift"
+          aria-hidden="true"
+          style={reducedMotion ? undefined : { y: noteY, opacity: fade }}
+        >
+          <span>market structure</span>
+          <span>agentic workflows</span>
+          <span>risk systems</span>
+        </motion.div>
+
+        <motion.div
+          className="hero-art__scroll meta"
+          style={reducedMotion ? undefined : { y: noteY, opacity: fade }}
         >
           Scroll to read
           <svg
@@ -69,12 +85,6 @@ export function HeroArt() {
             <line x1="5" y1="2" x2="5" y2="16" stroke="currentColor" strokeWidth="0.8" />
             <polyline points="2,13 5,18 8,13" fill="none" stroke="currentColor" strokeWidth="0.8" />
           </svg>
-        </motion.div>
-        <motion.div
-          className="hero-art__corner-br meta"
-          style={reducedMotion ? undefined : { y: cornerBottomY, opacity: fade }}
-        >
-          [ scroll-linked atmosphere ]
         </motion.div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 import { useReveal } from "./hooks";
 import { SectionHead } from "./SectionHead";
 import { IconArrow } from "./IconArrow";
+import { CONTACT_EMAIL, SocialSignals } from "./SocialSignals";
 
 export function ContactTeaser() {
   const ref = useReveal<HTMLElement>();
@@ -14,9 +15,10 @@ export function ContactTeaser() {
         lede="Open for Web3 research engagements, AI automation projects, and the occasional consultation on systematic trading."
       />
       <div className="contact-teaser__inner">
-        <a href="mailto:hi@j45h.xyz" className="contact-teaser__big display">
-          hi@j45h.xyz
+        <a href={`mailto:${CONTACT_EMAIL}`} className="contact-teaser__big display">
+          Write a note
         </a>
+        <SocialSignals />
         <div className="contact-teaser__row">
           <div className="meta">
             <div className="dim-2">Currently</div>
@@ -32,13 +34,13 @@ export function ContactTeaser() {
           </div>
         </div>
         <div className="contact-teaser__cta">
-          <a href="mailto:hi@j45h.xyz" className="btn">
-            Write a note
+          <a href={`mailto:${CONTACT_EMAIL}`} className="btn">
+            Email me
             <span className="btn-arrow">
               <IconArrow size={12} rotate={-45} />
             </span>
           </a>
-          <a href="mailto:hi@j45h.xyz?subject=Call" className="btn-ghost">
+          <a href={`mailto:${CONTACT_EMAIL}?subject=Call`} className="btn-ghost">
             Or book a call ↗
           </a>
         </div>

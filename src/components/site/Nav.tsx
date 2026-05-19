@@ -37,7 +37,7 @@ export function Nav() {
 
   const isActive = (l: LinkItem) => {
     if (l.href.startsWith("/projects")) return pathname?.startsWith("/projects");
-    if (l.href.startsWith("/#")) return pathname === "/";
+    if (l.href.startsWith("/#")) return pathname === "/" && l.key === "home";
     return false;
   };
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 type Props = {
   src?: string;
   alt?: string;
-  ratio?: "4-5" | "4-3";
+  ratio?: "4-5" | "4-3" | "1-1";
   objectPosition?: string;
   placeholder?: string;
   corner?: string;

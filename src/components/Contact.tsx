@@ -8,7 +8,7 @@ import Button from "./ui/Button";
 import GlassCard from "./ui/GlassCard";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "jashanthadani0696@gmail.com" },
+  { icon: Mail, label: "Email", value: "Click the mail button" },
   { icon: MapPin, label: "Location", value: "Remote / Singapore" },
   { icon: Clock, label: "Timezone", value: "UTC+8" },
 ];
