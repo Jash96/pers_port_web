@@ -86,6 +86,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     key: "dune",
     label: "Dune",
+    href: "https://dune.com/pepperones",
     tone: "#f06f3c",
     Icon: DuneIcon,
   },

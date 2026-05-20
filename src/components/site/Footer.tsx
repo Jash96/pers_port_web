@@ -37,7 +37,6 @@ export function Footer() {
       <div className="footer-meta">
         <span>© {new Date().getFullYear()} Jashan</span>
         <span>Singapore · 1.3521° N, 103.8198° E</span>
-        <span>v.04 — May &lsquo;26</span>
       </div>
     </footer>
   );

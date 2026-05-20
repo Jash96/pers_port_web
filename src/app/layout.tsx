@@ -37,11 +37,11 @@ const jetbrainsMono = JetBrains_Mono({
 const themeInitScript = `
 (function() {
   try {
-    var stored = localStorage.getItem('theme');
-    var theme = (stored === 'light' || stored === 'dark') ? stored : 'dark';
+    var stored = localStorage.getItem('jashan-theme');
+    var theme = (stored === 'light' || stored === 'dark') ? stored : 'light';
     document.documentElement.setAttribute('data-theme', theme);
   } catch (e) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-theme', 'light');
   }
 })();
 `;
@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       data-density="regular"
       data-grain="on"
       data-cursor="on"

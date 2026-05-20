@@ -18,6 +18,11 @@ export function HeroArt() {
   const pathRotate = useTransform(progress, [0, 900], [0, -4]);
   const noteY = useTransform(progress, [0, 900], [0, 34]);
   const fade = useTransform(progress, [0, 650, 900], [1, 0.9, 0.36]);
+  const instrumentY = useTransform(progress, [0, 780], [0, -42]);
+  const instrumentRotate = useTransform(progress, [0, 780], [-8, 18]);
+  const instrumentScale = useTransform(progress, [0, 780], [0.96, 1.06]);
+  const orbitOffset = useTransform(progress, [0, 780], [0, 1]);
+  const traceLength = useTransform(progress, [0, 780], [0.18, 1]);
 
   return (
     <section className="hero hero-art reveal-stagger in" id="top">
@@ -55,20 +60,112 @@ export function HeroArt() {
           <h1 className="hero-art__name display">
             Jashan<span className="accent-dot">.</span>
           </h1>
-          <p className="hero-art__statement">
-            Crypto intelligence, automation, and trading systems. Quiet tools for markets that move
-            fast.
-          </p>
+          <motion.div
+            className="hero-art__instrument"
+            aria-hidden="true"
+            style={
+              reducedMotion
+                ? undefined
+                : { y: instrumentY, rotate: instrumentRotate, scale: instrumentScale }
+            }
+          >
+            <span className="hero-art__instrument-glow" />
+            <svg className="hero-art__instrument-mark" viewBox="0 0 520 170">
+              <defs>
+                <linearGradient id="heroInstrumentLine" x1="26" y1="114" x2="492" y2="46">
+                  <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+                  <stop offset="44%" stopColor="currentColor" stopOpacity="0.74" />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                </linearGradient>
+                <radialGradient id="heroInstrumentGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.2" />
+                  <stop offset="72%" stopColor="currentColor" stopOpacity="0.04" />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <circle className="hero-art__instrument-haze" cx="226" cy="82" r="78" />
+              <motion.circle
+                className="hero-art__instrument-ring hero-art__instrument-ring--outer"
+                cx="226"
+                cy="82"
+                r="68"
+                style={reducedMotion ? undefined : { pathLength: traceLength }}
+              />
+              <circle className="hero-art__instrument-ring hero-art__instrument-ring--mid" cx="226" cy="82" r="43" />
+              <circle className="hero-art__instrument-ring hero-art__instrument-ring--inner" cx="226" cy="82" r="15" />
+              <motion.path
+                className="hero-art__instrument-trace"
+                d="M22 112 C 88 56, 144 132, 216 78 S 336 18, 498 52"
+                style={reducedMotion ? undefined : { pathLength: traceLength }}
+              />
+              <path
+                className="hero-art__instrument-ticks"
+                d="M226 8v15M226 141v15M152 82h15M285 82h15M174 30l11 11M268 124l11 11M174 134l11-11M268 40l11-11"
+              />
+              <motion.g
+                className="hero-art__instrument-orbit"
+                style={reducedMotion ? undefined : { pathLength: orbitOffset }}
+              >
+                <circle cx="168" cy="52" r="3" />
+                <circle cx="302" cy="110" r="2.5" />
+                <circle cx="402" cy="44" r="2" />
+              </motion.g>
+              <motion.line
+                className="hero-art__instrument-needle"
+                x1="226"
+                y1="82"
+                x2="286"
+                y2="58"
+                style={reducedMotion ? undefined : { rotate: instrumentRotate }}
+              />
+              <circle className="hero-art__instrument-core" cx="226" cy="82" r="4" />
+              <path className="hero-art__instrument-bars" d="M364 122v-22M384 122V84M404 122V96M424 122V68M444 122V90" />
+            </svg>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          className="hero-art__drift"
+          className="hero-art__artpiece"
           aria-hidden="true"
           style={reducedMotion ? undefined : { y: noteY, opacity: fade }}
         >
-          <span>market structure</span>
-          <span>agentic workflows</span>
-          <span>risk systems</span>
+          <span className="hero-art__art-glow" />
+          <span className="hero-art__art-dust hero-art__art-dust--one" />
+          <span className="hero-art__art-dust hero-art__art-dust--two" />
+          <svg className="hero-art__art-mark" viewBox="0 0 420 300">
+            <defs>
+              <radialGradient id="heroLensGlow" cx="58%" cy="45%" r="58%">
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.32" />
+                <stop offset="48%" stopColor="currentColor" stopOpacity="0.1" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+              </radialGradient>
+              <linearGradient id="heroLensThread" x1="32" y1="226" x2="390" y2="62">
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+                <stop offset="42%" stopColor="currentColor" stopOpacity="0.52" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <circle className="hero-art__art-haze" cx="262" cy="132" r="126" />
+            <path
+              className="hero-art__art-ribbon"
+              d="M48 194 C 118 102, 188 234, 272 116 S 364 88, 394 42"
+            />
+            <path
+              className="hero-art__art-thread hero-art__art-thread--one"
+              d="M22 206 C 96 156, 146 174, 206 118 S 312 58, 400 84"
+            />
+            <path
+              className="hero-art__art-thread hero-art__art-thread--two"
+              d="M88 244 C 152 166, 216 204, 286 134 S 354 64, 386 106"
+            />
+            <ellipse className="hero-art__art-orbit hero-art__art-orbit--one" cx="262" cy="132" rx="118" ry="45" />
+            <ellipse className="hero-art__art-orbit hero-art__art-orbit--two" cx="262" cy="132" rx="72" ry="26" />
+            <ellipse className="hero-art__art-orbit hero-art__art-orbit--three" cx="262" cy="132" rx="28" ry="10" />
+            <circle className="hero-art__art-core" cx="262" cy="132" r="4" />
+            <circle className="hero-art__art-node hero-art__art-node--one" cx="122" cy="166" r="3" />
+            <circle className="hero-art__art-node hero-art__art-node--two" cx="334" cy="86" r="3" />
+            <path className="hero-art__art-ticks" d="M158 74v18M332 174v18M362 132h20M82 132h22" />
+          </svg>
         </motion.div>
 
         <motion.div

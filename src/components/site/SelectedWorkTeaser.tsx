@@ -7,27 +7,35 @@ import { IconArrow } from "./IconArrow";
 const ITEMS = [
   {
     n: "01",
-    year: "'22 — ongoing",
-    title: "Web3 Intel Reports",
-    kind: "Research / Writing",
+    year: "'21 — ongoing",
+    title: "Systematic Trading Systems",
+    kind: "Trading / Systems",
     blurb:
-      "Protocol breakdowns, tokenomics autopsies, and the occasional contrarian thesis. Published for analysts and funds.",
+      "Forward-tested FX and crypto strategy tooling built around MT5, MQL5, Python, and risk-aware research.",
   },
   {
     n: "02",
     year: "'24 — ongoing",
-    title: "Agentic Workflows",
+    title: "AI Automation Work",
     kind: "AI / Automation",
     blurb:
-      "N8N pipelines, Claude agents, MCP tools and RAG indexes — wired together so the dull half of analysis writes itself.",
+      "Telegram assistants, market-news publishing workflows, RAG support, and CRM automations built for real operating use.",
   },
   {
     n: "03",
-    year: "'23 — ongoing",
-    title: "MetaTrader 5 Systems",
-    kind: "Algo / Quant",
+    year: "'25 — ongoing",
+    title: "Cambre Station",
+    kind: "Trading / Scanner",
     blurb:
-      "MQL5 expert advisors with conservative sizing, multi-timeframe filters, and a refusal to over-fit.",
+      "A read-only FX and crypto scanner with a Python backend, TimescaleDB history, Redis state, and a Next.js dashboard.",
+  },
+  {
+    n: "04",
+    year: "'22 — ongoing",
+    title: "Blockchain Data Analysis",
+    kind: "Web3 / Analytics",
+    blurb:
+      "DuneSQL dashboards and on-chain research views that translate protocol activity into readable market signal.",
   },
 ];
 
@@ -39,7 +47,6 @@ export function SelectedWorkTeaser() {
         num="03"
         label="Work"
         title={<>Selected <em>work</em>.</>}
-        lede="A short reading list. Long-form case studies live on the Projects page."
       />
       <ul className="selected__list reveal-stagger" ref={ref}>
         {ITEMS.map((it) => (
