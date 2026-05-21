@@ -52,7 +52,7 @@ export function AboutTeaser() {
             <Fact n="04" l="years in Web3" />
             <Fact n="20" l="automations shipped" />
             <Fact n="100" l="research notes" suffix="+" />
-            <Fact n="03" l="languages" />
+            <Fact n="02" l="languages" />
           </div>
         </div>
       </div>
