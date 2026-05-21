@@ -15,26 +15,18 @@ export default function AnimatedText({ texts, className = "" }: AnimatedTextProp
 
   useEffect(() => {
     const currentText = texts[currentIndex];
-    const timeout = isDeleting ? 50 : 100;
-
-    if (!isDeleting && displayText === currentText) {
-      setTimeout(() => setIsDeleting(true), 2000);
-      return;
-    }
-
-    if (isDeleting && displayText === "") {
-      setIsDeleting(false);
-      setCurrentIndex((prev) => (prev + 1) % texts.length);
-      return;
-    }
-
     const timer = setTimeout(() => {
-      if (isDeleting) {
+      if (!isDeleting && displayText === currentText) {
+        setIsDeleting(true);
+      } else if (isDeleting && displayText === "") {
+        setIsDeleting(false);
+        setCurrentIndex((prev) => (prev + 1) % texts.length);
+      } else if (isDeleting) {
         setDisplayText(currentText.substring(0, displayText.length - 1));
       } else {
         setDisplayText(currentText.substring(0, displayText.length + 1));
       }
-    }, timeout);
+    }, !isDeleting && displayText === currentText ? 2000 : isDeleting ? 50 : 100);
 
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, currentIndex, texts]);

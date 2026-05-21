@@ -76,7 +76,7 @@ export default function About() {
                 Avid music connoisseur, spanning from trance, house, indie, and a lot more. I love traveling abroad and gaining new experiences, when I get the chance. A foodie at heart for sure.
               </p>
               <p className="text-lg text-text-muted leading-relaxed">
-                I'm truly happy when I get opportunities to be creative, and I enjoy conversations of profound topics with friends. I keep myself physically active and I enjoy tennis.
+                I&apos;m truly happy when I get opportunities to be creative, and I enjoy conversations of profound topics with friends. I keep myself physically active and I enjoy tennis.
               </p>
               <p className="text-lg text-text-muted leading-relaxed">
                 Originally with a background in Aerospace Engineering, I ventured into Computing &amp; Data Analysis and eventually pivoted to digital-asset finance as an analyst. Mandarin (Chinese) is my second language that I took throughout my schooling years.
