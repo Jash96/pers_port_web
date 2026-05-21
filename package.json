@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 8080 --webpack",
     "build": "next build",
+    "check:dev-watch": "node scripts/check-dev-watch-config.mjs",
     "start": "next start",
     "lint": "eslint"
   },
